@@ -10,7 +10,7 @@ class CreateVenuesTable extends Migration {
             $table->engine = 'InnoDB';
             $table->increments('id');
             $table->timestamps();
-            $table->integer('author_id')->references('id')->on('users');
+            $table->integer('author_id');
 
             $table->string('name');
             $table->string('url')->nullable();
@@ -27,6 +27,8 @@ class CreateVenuesTable extends Migration {
             $table->string('foursquare_id', 32)->nullable()->unique();
             $table->string('foursquare_category_id', 32)->nullable();
             $table->bigInteger('facebook_id')->nullable()->unique();
+
+            $table->foreign('author_id')->references('id')->on('users');
         });
     }
 
